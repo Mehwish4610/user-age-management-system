@@ -57,6 +57,12 @@ func main() {
 	routes.UserRoutes(app, userHandler)
 
 	port := os.Getenv("SERVER_PORT")
+	if port == "" {
+		port = os.Getenv("PORT")
+	}
+	if port == "" {
+		port = "8081"
+	}
 
 	log.Println("Server running on port", port)
 	log.Fatal(app.Listen(":" + port))
