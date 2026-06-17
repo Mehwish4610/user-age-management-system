@@ -1,0 +1,28 @@
+-- name: CreateUser :execresult
+INSERT INTO users (name, dob)
+VALUES (?, ?);
+
+-- name: GetUserByID :one
+SELECT id, name, dob
+FROM users
+WHERE id = ?;
+
+-- name: ListUsers :many
+SELECT id, name, dob
+FROM users
+ORDER BY id DESC;
+
+-- name: UpdateUser :execresult
+UPDATE users
+SET name = ?, dob = ?
+WHERE id = ?;
+
+-- name: DeleteUser :exec
+DELETE FROM users
+WHERE id = ?;
+
+-- name: ListUsersPaginated :many
+SELECT id, name, dob
+FROM users
+ORDER BY id DESC
+LIMIT ? OFFSET ?;
