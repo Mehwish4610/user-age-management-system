@@ -31,6 +31,7 @@ body {
   width: 100%;
   min-height: 100vh;
   display: grid;
+  align-items: stretch;
   grid-template-columns: 280px minmax(0, 1fr);
   background: linear-gradient(135deg, #eef2ff, #f8fafc);
 }
@@ -48,9 +49,10 @@ body {
   background: linear-gradient(180deg, #4f46e5, #7c3aed);
   color: white;
   padding: 28px 22px;
-  position: sticky;
+  position: relative;
   top: 0;
-  height: 100vh;
+  min-height: 100vh;
+  height: auto;
 }
 
 .logo {
@@ -72,7 +74,7 @@ body {
 
 
 .status-box {
-  position: absolute;
+  margin-top: auto;
   bottom: 24px;
   left: 22px;
   right: 22px;
