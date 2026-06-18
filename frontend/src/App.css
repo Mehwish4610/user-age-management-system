@@ -333,11 +333,12 @@ select:focus {
 .toolbar {
   width: 100%;
   margin-bottom: 24px;
-}
-
-display: flex;
+  display: flex;
   justify-content: space-between;
   align-items: center;
+}
+
+  
 
 /* =========================
    TABLE

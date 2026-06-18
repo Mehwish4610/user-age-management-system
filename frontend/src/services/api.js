@@ -1,7 +1,7 @@
 import axios from "axios";
 
 const API = axios.create({
-  baseURL: import.meta.env.VITE_API_URL || "http://localhost:8081",
+  baseURL: import.meta.env.VITE_API_URL || "https://user-age-management-system.onrender.com",
 });
 
 export const getUsers = (page = 1, limit = 5) => {
