@@ -1,8 +1,6 @@
-@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800&display=swap");
 
-/* =========================
-   GLOBAL RESET
-========================= */
+/* RESET */
 
 * {
   box-sizing: border-box;
@@ -17,111 +15,113 @@ body,
 }
 
 body {
-  font-family: "Inter", sans-serif;
-  background: linear-gradient(135deg, #eef2ff, #f8fafc);
+  font-family: "Outfit", sans-serif;
+  background: #eef2ff;
   color: #111827;
   overflow-x: hidden;
 }
 
-/* =========================
-   APP LAYOUT
-========================= */
+/* LAYOUT */
 
 .app {
   width: 100%;
   min-height: 100vh;
-  display: grid;
-  align-items: stretch;
-  grid-template-columns: 280px minmax(0, 1fr);
+  display: flex;
   background: linear-gradient(135deg, #eef2ff, #f8fafc);
 }
 
 .main {
-  width: 100%;
+  flex: 1;
+  width: calc(100% - 280px);
+  min-height: 100vh;
   padding: 32px 42px;
+  overflow-x: hidden;
 }
 
-/* =========================
-   SIDEBAR
-========================= */
+/* SIDEBAR */
 
 .sidebar {
+  width: 280px;
+  flex-shrink: 0;
+  min-height: 100vh;
   background: linear-gradient(180deg, #4f46e5, #7c3aed);
   color: white;
   padding: 28px 22px;
-  position: relative;
-  top: 0;
-  min-height: 100vh;
-  height: auto;
+  display: flex;
+  flex-direction: column;
 }
 
 .logo {
-  padding: 16px;
-  border-radius: 18px;
   font-size: 24px;
   font-weight: 800;
-  margin-bottom: 40px;
   line-height: 1.25;
+  padding: 18px;
+  border-radius: 20px;
   background: rgba(255, 255, 255, 0.14);
+  margin-bottom: 34px;
+}
+
+.nav-item {
+  padding: 16px;
+  border-radius: 16px;
+  margin-bottom: 14px;
+  background: rgba(255, 255, 255, 0.14);
+  font-weight: 700;
   cursor: pointer;
-  transition: transform 0.2s ease, background 0.2s ease;
+  transition: all 0.2s ease;
 }
 
-.logo:hover {
-  transform: translateY(6px);
-  background: rgba(255, 255, 255, 0.24);
+.nav-item:hover {
+  transform: translateX(6px);
+  background: rgba(255, 255, 255, 0.25);
 }
-
 
 .status-box {
   margin-top: auto;
-  bottom: 24px;
-  left: 22px;
-  right: 22px;
   background: rgba(255, 255, 255, 0.17);
   padding: 18px;
   border-radius: 18px;
   font-size: 14px;
+  text-align: center;
 }
 
 .status-box p {
   margin: 8px 0;
 }
 
-/* =========================
-   HERO
-========================= */
+/* HERO */
 
 .hero {
   width: 100%;
   background: linear-gradient(145deg, #ffffff, #f5f7ff);
-  border: 1px solid rgba(99, 102, 241, 0.12);
-  border-radius: 26px;
+  border: 1px solid rgba(99, 102, 241, 0.14);
+  border-radius: 28px;
   padding: 32px;
   margin-bottom: 26px;
   box-shadow: 0 20px 40px rgba(79, 70, 229, 0.12);
   display: flex;
   justify-content: space-between;
   align-items: center;
-  transition: transform 0.25s ease, box-shadow 0.25s ease, border 0.25s ease;
+  gap: 24px;
+  transition: all 0.25s ease;
 }
 
 .hero:hover {
-  transform: translateY(-5px);
-  box-shadow: 0 24px 45px rgba(79, 70, 229, 0.2);
-  border: 1px solid rgba(99, 102, 241, 0.35);
+  transform: translateY(-4px);
+  box-shadow: 0 24px 45px rgba(79, 70, 229, 0.18);
 }
 
 .hero h1 {
   margin: 0;
-  font-size: 34px;
+  font-size: clamp(28px, 4vw, 42px);
   color: #312e81;
+  font-weight: 800;
 }
 
 .hero p {
   color: #475569;
   margin: 8px 0 0;
-  font-size: 16px;
+  font-size: 17px;
 }
 
 .theme-toggle {
@@ -132,17 +132,10 @@ body {
   color: #4f46e5;
   font-weight: 800;
   cursor: pointer;
-  transition: transform 0.2s ease, background 0.2s ease;
+  white-space: nowrap;
 }
 
-.theme-toggle:hover {
-  transform: scale(1.04);
-  background: #ddd6fe;
-}
-
-/* =========================
-   MESSAGE ALERT
-========================= */
+/* MESSAGE */
 
 .message {
   width: 100%;
@@ -154,7 +147,7 @@ body {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  font-weight: 600;
+  font-weight: 700;
 }
 
 .message button {
@@ -165,43 +158,42 @@ body {
   color: #166534;
 }
 
-/* =========================
-   STAT CARDS
-========================= */
+/* STATS */
 
 .stats-grid {
   width: 100%;
   display: grid;
-  grid-template-columns: repeat(4, 1fr);
+  grid-template-columns: repeat(4, minmax(180px, 1fr));
   gap: 18px;
   margin-bottom: 26px;
 }
 
 .stat-card {
   background: linear-gradient(145deg, #ffffff, #f5f7ff);
-  border: 1px solid rgba(99, 102, 241, 0.12);
+  border: 1px solid rgba(99, 102, 241, 0.14);
   padding: 24px;
   border-radius: 24px;
   text-align: center;
   box-shadow: 0 16px 30px rgba(15, 23, 42, 0.08);
-  transition: transform 0.25s ease, box-shadow 0.25s ease, border 0.25s ease;
+  transition: all 0.25s ease;
 }
 
 .stat-card:hover {
   transform: translateY(-6px) scale(1.015);
   box-shadow: 0 24px 45px rgba(79, 70, 229, 0.2);
-  border: 1px solid rgba(99, 102, 241, 0.35);
+  border-color: rgba(99, 102, 241, 0.35);
 }
 
 .stat-card span {
-  font-size: 28px;
+  font-size: 30px;
 }
 
 .stat-card h3 {
   margin: 12px 0 4px;
-  font-size: 26px;
+  font-size: 28px;
   color: #4f46e5;
   line-height: 1.15;
+  word-break: break-word;
 }
 
 .stat-card p {
@@ -210,33 +202,32 @@ body {
   font-weight: 700;
 }
 
-/* =========================
-   CARDS / FORMS
-========================= */
+/* CARDS */
 
 .card {
   width: 100%;
   background: linear-gradient(145deg, #ffffff, #f5f7ff);
-  border: 1px solid rgba(99, 102, 241, 0.12);
+  border: 1px solid rgba(99, 102, 241, 0.14);
   padding: 28px;
-  border-radius: 26px;
+  border-radius: 28px;
   margin-bottom: 26px;
   box-shadow: 0 18px 35px rgba(15, 23, 42, 0.08);
-  transition: transform 0.25s ease, box-shadow 0.25s ease, border 0.25s ease;
+  transition: all 0.25s ease;
 }
 
 .card:hover {
-  transform: translateY(-5px);
+  transform: translateY(-4px);
   box-shadow: 0 24px 45px rgba(79, 70, 229, 0.18);
-  border: 1px solid rgba(99, 102, 241, 0.35);
 }
 
 .card h2 {
   margin-top: 0;
   color: #312e81;
-  opacity: 1;
   text-align: center;
+  font-size: 28px;
 }
+
+/* FORM */
 
 .user-form {
   width: 100%;
@@ -253,27 +244,24 @@ body {
 
 label {
   color: #111827;
-  font-weight: 700;
+  font-weight: 800;
   margin-bottom: 8px;
 }
 
 input,
 select {
   width: 100%;
-  padding: 14px;
+  padding: 15px 16px;
   border: 1px solid #c7d2fe;
-  border-radius: 14px;
-  font-size: 15px;
+  border-radius: 16px;
+  font-size: 16px;
   background: #f8fafc;
   color: #111827;
+  font-family: inherit;
 }
 
 input::placeholder {
   color: #64748b;
-}
-
-input[type="date"] {
-  color: #111827;
 }
 
 input:focus,
@@ -281,20 +269,24 @@ select:focus {
   outline: none;
   border-color: #6366f1;
   background: white;
+  box-shadow: 0 0 0 4px rgba(99, 102, 241, 0.14);
 }
 
-/* =========================
-   BUTTONS
-========================= */
+.form-actions {
+  display: flex;
+  gap: 10px;
+}
+
+/* BUTTONS */
 
 .btn {
   border: none;
-  padding: 13px 18px;
-  border-radius: 14px;
+  padding: 14px 18px;
+  border-radius: 16px;
   cursor: pointer;
   font-weight: 800;
-  margin-right: 8px;
-  transition: transform 0.2s ease, opacity 0.2s ease;
+  font-family: inherit;
+  transition: all 0.2s ease;
 }
 
 .btn:hover {
@@ -328,23 +320,20 @@ select:focus {
   color: white;
 }
 
-/* =========================
-   TOOLBAR / SEARCH
-========================= */
+/* SEARCH */
 
 .toolbar {
   width: 100%;
   margin-bottom: 24px;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
 }
 
-  
+.toolbar input {
+  width: 100%;
+  padding: 16px 20px;
+  border-radius: 18px;
+}
 
-/* =========================
-   TABLE
-========================= */
+/* TABLE */
 
 .table-wrapper {
   width: 100%;
@@ -354,6 +343,7 @@ select:focus {
 table {
   width: 100%;
   border-collapse: collapse;
+  min-width: 700px;
 }
 
 th {
@@ -366,10 +356,11 @@ td {
   padding: 16px;
   border-bottom: 1px solid #eef2ff;
   text-align: left;
+  font-size: 16px;
 }
 
 tbody tr {
-  transition: background 0.2s ease, transform 0.2s ease;
+  transition: background 0.2s ease;
 }
 
 tbody tr:hover {
@@ -381,17 +372,20 @@ td:nth-child(4) {
   color: #16a34a;
 }
 
-/* =========================
-   PAGINATION
-========================= */
+/* PAGINATION */
 
 .pagination {
   width: 100%;
   display: flex;
   justify-content: center;
   align-items: center;
-  gap: 14px;
   margin-bottom: 30px;
+  gap: 14px;
+  flex-wrap: wrap;
+}
+
+.pagination select {
+  max-width: 220px;
 }
 
 .empty-text,
@@ -400,9 +394,7 @@ td:nth-child(4) {
   text-align: center;
 }
 
-/* =========================
-   DARK MODE
-========================= */
+/* DARK MODE */
 
 .app.dark {
   background: #0f172a;
@@ -429,14 +421,15 @@ td:nth-child(4) {
 }
 
 .app.dark .hero p,
-.app.dark .empty-text {
+.app.dark .empty-text,
+.app.dark .stat-card p {
   color: #cbd5e1;
 }
 
 .app.dark input,
 .app.dark select {
   background: #334155;
-  color: #ffffff;
+  color: white;
   border-color: #475569;
 }
 
@@ -457,18 +450,12 @@ td:nth-child(4) {
   color: #a78bfa;
 }
 
-.app.dark .stat-card p {
-  color: #cbd5e1;
-}
-
 .app.dark .theme-toggle {
   background: #334155;
   color: #f8fafc;
 }
 
-/* =========================
-   RESPONSIVE DESIGN
-========================= */
+/* TABLET */
 
 @media (max-width: 1100px) {
   .stats-grid {
@@ -484,41 +471,66 @@ td:nth-child(4) {
   }
 }
 
+/* MOBILE */
+
 @media (max-width: 900px) {
   .app {
+    display: block;
     width: 100%;
-    grid-template-columns: 1fr;
+    min-height: 100vh;
   }
 
   .sidebar {
-    height: auto;
-    position: static;
+    width: 100%;
+    min-height: auto;
+    padding: 18px 12px;
     border-radius: 0 0 24px 24px;
   }
 
+  .logo {
+    margin-bottom: 18px;
+    text-align: center;
+    font-size: 20px;
+  }
+
+  .nav-item {
+    display: none;
+  }
+
   .status-box {
-    position: static;
-    margin-top: 20px;
+    margin-top: 14px;
   }
 
   .main {
-    padding: 20px;
+    width: 100%;
+    min-height: auto;
+    padding: 12px 8px 28px;
   }
 
   .hero {
     flex-direction: column;
-    gap: 16px;
     text-align: center;
+    padding: 24px 18px;
+    border-radius: 22px;
   }
 
-  .toolbar input {
-    width: 100%;
+  .hero h1 {
+    font-size: 27px;
   }
-}
 
-@media (max-width: 600px) {
+  .hero p {
+    font-size: 15px;
+  }
+
   .stats-grid {
     grid-template-columns: 1fr;
+    gap: 16px;
+  }
+
+  .stat-card,
+  .card,
+  .message {
+    border-radius: 20px;
   }
 
   .user-form {
@@ -527,90 +539,47 @@ td:nth-child(4) {
 
   .form-actions {
     grid-column: auto;
+    flex-direction: column;
   }
 
   .btn {
     width: 100%;
-    margin-bottom: 8px;
   }
 
   .pagination {
     flex-direction: column;
   }
 
-  .hero h1 {
-    font-size: 26px;
-  }
-
-  .main {
-    padding: 16px;
-  }
-}
-
-/* =========================
-   MOBILE WIDTH FIX
-========================= */
-
-html,
-body,
-#root {
-  width: 100%;
-  max-width: 100%;
-  overflow-x: hidden;
-}
-
-.app {
-  width: 100%;
-  max-width: 100%;
-  overflow-x: hidden;
-}
-
-.main {
-  max-width: 100%;
-  overflow-x: hidden;
-}
-
-@media (max-width: 900px) {
-  .app {
-    display: block;
-    width: 100%;
-  }
-
-  .sidebar {
-    width: 100%;
-    border-radius: 0 0 22px 22px;
-  }
-
-  .main {
-    width: 100%;
-    padding: 12px 8px;
-  }
-
-  .hero,
-  .card,
-  .message,
-  .stat-card {
-    width: 100%;
+  .pagination select {
     max-width: 100%;
-    margin-left: 0;
-    margin-right: 0;
+  }
+}
+
+/* SMALL MOBILE */
+
+@media (max-width: 430px) {
+  .main {
+    padding: 10px 6px 24px;
   }
 
-  .stats-grid {
-    width: 100%;
-    grid-template-columns: 1fr;
+  .card {
+    padding: 22px 16px;
   }
 
-  .user-form {
-    grid-template-columns: 1fr;
+  .hero {
+    padding: 22px 14px;
   }
 
-  .toolbar input {
-    width: 100%;
+  .stat-card {
+    padding: 22px 16px;
   }
 
-  .table-wrapper {
-    width: 100%;
-    overflow-x: auto;
+  .card h2 {
+    font-size: 24px;
+  }
+
+  input,
+  select {
+    font-size: 15px;
   }
 }
