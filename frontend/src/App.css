@@ -28,7 +28,7 @@ body {
 ========================= */
 
 .app {
-  width: 100vw;
+  width: 100%;
   min-height: 100vh;
   display: grid;
   grid-template-columns: 280px minmax(0, 1fr);
@@ -542,5 +542,73 @@ td:nth-child(4) {
 
   .main {
     padding: 16px;
+  }
+}
+
+/* =========================
+   MOBILE WIDTH FIX
+========================= */
+
+html,
+body,
+#root {
+  width: 100%;
+  max-width: 100%;
+  overflow-x: hidden;
+}
+
+.app {
+  width: 100%;
+  max-width: 100%;
+  overflow-x: hidden;
+}
+
+.main {
+  max-width: 100%;
+  overflow-x: hidden;
+}
+
+@media (max-width: 900px) {
+  .app {
+    display: block;
+    width: 100%;
+  }
+
+  .sidebar {
+    width: 100%;
+    border-radius: 0 0 22px 22px;
+  }
+
+  .main {
+    width: 100%;
+    padding: 12px 8px;
+  }
+
+  .hero,
+  .card,
+  .message,
+  .stat-card {
+    width: 100%;
+    max-width: 100%;
+    margin-left: 0;
+    margin-right: 0;
+  }
+
+  .stats-grid {
+    width: 100%;
+    grid-template-columns: 1fr;
+  }
+
+  .user-form {
+    grid-template-columns: 1fr;
+  }
+
+  .toolbar input {
+    width: 100%;
+  }
+
+  .table-wrapper {
+    width: 100%;
+    overflow-x: auto;
   }
 }
