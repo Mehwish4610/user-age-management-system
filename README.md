@@ -1,55 +1,91 @@
 # User Age Management System
 
-A full-stack User Management application built with **Go Fiber**, **MySQL**, **SQLC**, **Docker**, and **React**. The application allows users to perform CRUD operations, dynamically calculate age from date of birth, and manage records through a modern responsive dashboard.
+A full-stack User Age Management System built using **Go (Fiber)**, **MySQL**, **React**, and **Docker**.
+
+The application allows users to create, update, delete, search, and manage user records while automatically calculating age from the stored date of birth. It includes a modern responsive dashboard with light/dark mode support and real-time statistics.
+
+## Live Demo
+
+**Frontend:** https://user-age-management-system.vercel.app
+
+**Backend API:** https://user-age-management-system.onrender.com
+
+---
 
 ## Features
 
-### Backend
+### User Management
 
-* RESTful API using Go Fiber
-* MySQL database integration
-* SQLC for type-safe database queries
-* Repository-Service-Handler architecture
-* Input validation using Validator
-* Structured logging using Uber Zap
-* Pagination support
-* Dockerized backend
-* Environment variable configuration
-* Health check endpoint
-
-### Frontend
-
-* React + Vite
-* Responsive dashboard UI
-* Dark Mode / Light Mode
+* Add new users
+* Update existing users
+* Delete users
+* View all users
 * Search users by name
-* User statistics dashboard
-* Create User
-* Update User
-* Delete User
-* Pagination support
-* Mobile-friendly design
+
+### Age Calculation
+
+* Automatic age calculation from Date of Birth
+* Average age calculation
+* Youngest user identification
+* Oldest user identification
+
+### Dashboard Analytics
+
+* Total users
+* Average age
+* Youngest user
+* Oldest user
+
+### User Experience
+
+* Fully responsive design
+* Mobile-friendly layout
+* Light Mode / Dark Mode
+* Interactive cards and hover effects
+* Modern dashboard UI
+
+### Backend Features
+
+* RESTful API architecture
+* Layered architecture (Handler → Service → Repository)
+* Request logging middleware
+* CORS support
+* MySQL database integration
+* Environment variable configuration
+
+### DevOps
+
+* Dockerized backend
+* GitHub integration
+* Render deployment
+* Vercel deployment
 
 ---
 
 ## Tech Stack
 
-### Backend
-
-* Go
-* Fiber
-* MySQL
-* SQLC
-* Validator
-* Uber Zap
-* Docker
-
 ### Frontend
 
 * React
 * Vite
-* Axios
 * CSS3
+* JavaScript
+
+### Backend
+
+* Go
+* Fiber Framework
+
+### Database
+
+* MySQL
+
+### DevOps & Deployment
+
+* Docker
+* Render
+* Vercel
+* GitHub
 
 ---
 
@@ -59,34 +95,22 @@ A full-stack User Management application built with **Go Fiber**, **MySQL**, **S
 go-user-age-api/
 │
 ├── cmd/
-│   └── server/
-│       └── main.go
-│
 ├── config/
-│
 ├── db/
-│   ├── query/
-│   ├── schema/
-│   └── sqlc/
-│
 ├── internal/
 │   ├── handler/
-│   ├── logger/
 │   ├── middleware/
-│   ├── models/
 │   ├── repository/
 │   ├── routes/
 │   └── service/
 │
 ├── frontend/
 │   ├── src/
-│   ├── public/
-│   └── package.json
+│   └── public/
 │
 ├── Dockerfile
 ├── go.mod
 ├── go.sum
-├── sqlc.yaml
 └── README.md
 ```
 
@@ -94,10 +118,16 @@ go-user-age-api/
 
 ## API Endpoints
 
-### Health Check
+### Get All Users
 
 ```http
-GET /health
+GET /users
+```
+
+### Get User By ID
+
+```http
+GET /users/:id
 ```
 
 ### Create User
@@ -111,20 +141,8 @@ Request Body:
 ```json
 {
   "name": "John Doe",
-  "dob": "2000-05-15"
+  "dob": "2002-05-20"
 }
-```
-
-### Get User By ID
-
-```http
-GET /users/:id
-```
-
-### Get All Users
-
-```http
-GET /users?page=1&limit=5
 ```
 
 ### Update User
@@ -133,136 +151,97 @@ GET /users?page=1&limit=5
 PUT /users/:id
 ```
 
-Request Body:
-
-```json
-{
-  "name": "Updated Name",
-  "dob": "1999-12-10"
-}
-```
-
 ### Delete User
 
 ```http
 DELETE /users/:id
 ```
 
----
+### Health Check
 
-## Dynamic Age Calculation
-
-The application calculates age dynamically based on the user's Date of Birth. Age is computed during retrieval and does not need to be stored separately in the database.
-
----
-
-## Database Schema
-
-```sql
-CREATE TABLE users (
-    id INT AUTO_INCREMENT PRIMARY KEY,
-    name VARCHAR(255) NOT NULL,
-    dob DATE NOT NULL
-);
+```http
+GET /health
 ```
 
 ---
 
-## Local Setup
+## Installation
 
 ### Clone Repository
 
 ```bash
 git clone https://github.com/Mehwish4610/user-age-management-system.git
+```
+
+```bash
 cd user-age-management-system
 ```
 
 ### Backend Setup
 
-Install dependencies:
-
 ```bash
-go mod tidy
+go mod download
 ```
 
-Create `.env`
+Create a `.env` file:
 
 ```env
 DB_HOST=localhost
 DB_PORT=3306
 DB_USER=root
-DB_PASSWORD=your_password
+DB_PASSWORD=password
 DB_NAME=user_age_db
+
 SERVER_PORT=8081
 ```
 
 Run backend:
 
 ```bash
-go run cmd/server/main.go
+go run cmd/main.go
 ```
 
----
-
 ### Frontend Setup
-
-Navigate to frontend:
 
 ```bash
 cd frontend
 ```
 
-Install dependencies:
-
 ```bash
 npm install
 ```
-
-Run frontend:
 
 ```bash
 npm run dev
 ```
 
-Frontend:
-
-```text
-http://localhost:5173
-```
-
-Backend:
-
-```text
-http://localhost:8081
-```
-
 ---
 
-## Docker
+## Docker Setup
 
-Build image:
-
-```bash
-docker build -t go-user-age-api .
-```
-
-Run container:
+Build Docker Image:
 
 ```bash
-docker run --env-file .env -p 8081:8081 go-user-age-api
+docker build -t user-age-management-system .
 ```
+
+Run Container:
+
+```bash
+docker run -p 8081:8081 user-age-management-system
+```
+
 
 ---
 
 ## Future Enhancements
 
 * JWT Authentication
-* User Profile Images
-* Advanced Filtering
-* Sorting by Age and Name
-* Export to CSV
-* Deployment on Vercel and Render
-* CI/CD using GitHub Actions
+* User Roles & Permissions
+* Profile Images
+* Export User Data to CSV
+* Pagination Improvements
+* Advanced Analytics Dashboard
 
 ---
 
@@ -272,5 +251,12 @@ docker run --env-file .env -p 8081:8081 go-user-age-api
 
 Computer Science Engineer | Data Science & AI Enthusiast
 
-GitHub:
-https://github.com/Mehwish4610
+GitHub: https://github.com/Mehwish4610
+
+LinkedIn: www.linkedin.com/in/mehwish-18476a266
+
+---
+
+## License
+
+This project is developed for learning, portfolio, and demonstration purposes.
